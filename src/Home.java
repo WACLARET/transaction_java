@@ -1,4 +1,6 @@
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -195,12 +198,8 @@ public class Home extends javax.swing.JFrame {
                 {
             PreparedStatement ps;
             String query = "INSERT INTO `transactions`(`balance`) VALUES (?)";
-            
-            
             try {
             ps = DatabaseConnection.getConnection().prepareStatement(query);
-            
-           
             ps.setString(1, str1);
             
             //display a success message
@@ -212,12 +211,7 @@ public class Home extends javax.swing.JFrame {
             
         }   catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
-        
-            
-            
-            
+            }  
             
         }
     }//GEN-LAST:event_jButton_depositActionPerformed
@@ -249,45 +243,11 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton_BalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BalanceActionPerformed
        
-        
-//        String roll= "";
-        
-
-        PreparedStatement ps;
-//        String no = "SELECT  `phone`, `balance` FROM `transactions` WHERE 1";
-        
-        
-        try {
-            String no = "select * from users";
-//            ps.con.preparedStatement(no);           
-            ps = DatabaseConnection.getConnection().prepareStatement(no);
-            ResultSet rs = ps.executeQuery();
-            JOptionPane.showMessageDialog( null, rs);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        
-        
-//       JFrame frame = new JFrame();
-//            String bigList[] = new String[30];
-//
-//            JOptionPane.showInputDialog(
-//                    frame, 
-//                    "Select a item", 
-//                    "The List", 
-//                    JOptionPane.PLAIN_MESSAGE,
-//                    null,
-//                    bigList,
-//                    "none");
-        
-//        String str1 = JOptionPane.showInputDialog("Enter Amount to deposit");
-            // input dialog returns always a string
-//        double fn = Double.parseDouble(str1);
-
-
-//    JOptionPane.showMessageDialog( null, "The Product is " + ps, "Product", JOptionPane.INFORMATION_MESSAGE);
-            
-        
+                    Transaction rgf = new Transaction();
+                    rgf.setVisible(true);  // Link to transaction form on click
+                    rgf.pack();
+                    rgf.setLocationRelativeTo(null);
+                    rgf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
     }//GEN-LAST:event_jButton_BalanceActionPerformed
 
